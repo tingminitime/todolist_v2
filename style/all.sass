@@ -1,0 +1,207 @@
+@import 'reset'
+
+/* ------ Global settings ------ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap')
+
+*, *:before, *:after
+  box-sizing: border-box
+  // outline: 1px solid rgba(red, .25)
+
+$yellow: #ffd370
+$red: #ff3535
+
+@mixin pad
+  @media (max-width: 767px)
+    @content
+
+body
+  font-family: 'Noto Sans TC', sans-serif
+  background-color: $yellow
+
+a
+  text-decoration: none
+  // color: #000
+  display: block
+
+img
+  max-width: 100%
+  height: auto
+  vertical-align: middle
+
+button
+  border: none
+  cursor: pointer
+
+.todolist
+  max-width: 600px
+  margin: 0 auto
+  padding: 30px 0
+  +pad
+    padding: 30px 20px
+  &__data
+    padding: 10px
+    border-radius: 10px
+    background-color: #fff
+    position: relative
+
+.title
+  font-size: 48px
+  font-weight: 700
+  letter-spacing: .2rem
+  text-align: center
+  color: #333
+  padding: 10px 0 10px 64px
+  margin-bottom: 30px
+  +pad
+    padding: 10px 20px
+    letter-spacing: .1rem
+    margin-bottom: 20px
+  > .smallText
+    font-size: 18px
+    font-weight: 500
+    letter-spacing: 1px
+    +pad
+      display: block
+      padding: 10px 0
+
+.version
+  text-align: right
+  color: #333
+
+.input
+  width: 100%
+  display: flex
+  justify-content: center
+  padding: 10px
+  margin: 10px 0
+  background-color: #fff
+  border-radius: 10px
+  &__taskInput
+    flex: 10
+    width: 100%
+    font-size: 24px
+    padding: 5px 10px
+    border: none
+    &::placeholder
+      font-size: 16px
+    &:focus
+      outline: none
+  &__add
+    flex: 2
+    padding: 10px
+    font-size: 18px
+    font-weight: 700
+    background-color: #333
+    color: #fff
+    border-radius: 8px
+    &:hover
+      background-color: lighten(#333, 10)
+
+.statusFilter
+  display: flex
+  justify-content: space-between
+
+.filter
+  width: 30%
+  z-index: 3
+  &__changeStatus
+    padding: 20px 10px
+    text-align: center
+    color: #000
+    border-radius: 8px
+    position: relative
+    transition: .2s
+    &:hover
+      background-color: rgba(#333,.25)
+    &.active
+      color: #fff
+  &__selectBlock
+    position: absolute
+    border-radius: 8px
+    background-color: #333
+    z-index: 1
+    transition: left .3s
+
+.taskList
+  padding: 10px
+  &__item
+    padding: 10px 0px
+    border-bottom: 1px solid #eee
+    user-select: none
+  &__item:last-child
+    border-bottom: none
+  &__itemReveal
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: wrap
+  &__label
+    flex: 10
+    width: 100%
+    padding: 15px 8px
+    cursor: pointer
+    transition: .2s
+    border-radius: 8px
+    +pad
+      flex: auto
+    &:hover
+      background-color: #eee
+  &__checkbox
+    cursor: pointer
+  &__text
+    font-size: 18px
+    display: inline-block
+    &.taskChecked
+      color: #aaa
+  &__deleteBtn, &__editBtn
+    flex: 1
+    font-size: 16px
+    font-weight: 700
+    padding: 5px 10px
+    margin-left: 10px
+    color: #fff
+    border-radius: 6px
+    +pad
+      flex: auto
+  &__deleteBtn
+    background-color: $red
+    &:hover
+      background-color: lighten($red, 10)
+  &__editBtn
+    background-color: #333
+    &:hover
+      background-color: lighten(#333, 10)
+  &__updateText
+    display: none
+  &__itemEdit
+    padding: 5px 10px
+    display: none
+    &.active
+      display: flex
+      flex-wrap: wrap
+      +pad
+        flex-direction: column
+  &__editInput
+    padding: 5px 10px
+    font-size: 20px
+    border: none
+    border-bottom: 2px solid #333
+    +pad
+      width: 100%
+    &:focus
+      outline: none
+  &__editControl
+    +pad
+      text-align: right
+  &__confirmBtn, &__cancelBtn
+    font-size: 16px
+    font-weight: 700
+    padding: 5px 10px
+    margin: 0 5px
+    border-radius: 6px
+    +pad
+      font-size: 16px
+      margin: 10px 0
+    &:hover
+      transform: scale(1.1)
+      background-color: $yellow

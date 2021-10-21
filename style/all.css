@@ -1,0 +1,401 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+ * v2.0 | 20110126
+ * License: none (public domain) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none;
+}
+
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ------ Global settings ------ */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background-color: #ffd370;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+.todolist {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+@media (max-width: 767px) {
+  .todolist {
+    padding: 30px 20px;
+  }
+}
+
+.todolist__data {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  position: relative;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: .2rem;
+  text-align: center;
+  color: #333;
+  padding: 10px 0 10px 64px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .title {
+    padding: 10px 20px;
+    letter-spacing: .1rem;
+    margin-bottom: 20px;
+  }
+}
+
+.title > .smallText {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 767px) {
+  .title > .smallText {
+    display: block;
+    padding: 10px 0;
+  }
+}
+
+.version {
+  text-align: right;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.input__taskInput {
+  -webkit-box-flex: 10;
+      -ms-flex: 10;
+          flex: 10;
+  width: 100%;
+  font-size: 24px;
+  padding: 5px 10px;
+  border: none;
+}
+
+.input__taskInput::-webkit-input-placeholder {
+  font-size: 16px;
+}
+
+.input__taskInput:-ms-input-placeholder {
+  font-size: 16px;
+}
+
+.input__taskInput::-ms-input-placeholder {
+  font-size: 16px;
+}
+
+.input__taskInput::placeholder {
+  font-size: 16px;
+}
+
+.input__taskInput:focus {
+  outline: none;
+}
+
+.input__add {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #333;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.input__add:hover {
+  background-color: #4d4d4d;
+}
+
+.statusFilter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.filter {
+  width: 30%;
+  z-index: 3;
+}
+
+.filter__changeStatus {
+  padding: 20px 10px;
+  text-align: center;
+  color: #000;
+  border-radius: 8px;
+  position: relative;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.filter__changeStatus:hover {
+  background-color: rgba(51, 51, 51, 0.25);
+}
+
+.filter__changeStatus.active {
+  color: #fff;
+}
+
+.filter__selectBlock {
+  position: absolute;
+  border-radius: 8px;
+  background-color: #333;
+  z-index: 1;
+  -webkit-transition: left .3s;
+  transition: left .3s;
+}
+
+.taskList {
+  padding: 10px;
+}
+
+.taskList__item {
+  padding: 10px 0px;
+  border-bottom: 1px solid #eee;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.taskList__item:last-child {
+  border-bottom: none;
+}
+
+.taskList__itemReveal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.taskList__label {
+  -webkit-box-flex: 10;
+      -ms-flex: 10;
+          flex: 10;
+  width: 100%;
+  padding: 15px 8px;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 8px;
+}
+
+@media (max-width: 767px) {
+  .taskList__label {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+  }
+}
+
+.taskList__label:hover {
+  background-color: #eee;
+}
+
+.taskList__checkbox {
+  cursor: pointer;
+}
+
+.taskList__text {
+  font-size: 18px;
+  display: inline-block;
+}
+
+.taskList__text.taskChecked {
+  color: #aaa;
+}
+
+.taskList__deleteBtn, .taskList__editBtn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px 10px;
+  margin-left: 10px;
+  color: #fff;
+  border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+  .taskList__deleteBtn, .taskList__editBtn {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+  }
+}
+
+.taskList__deleteBtn {
+  background-color: #ff3535;
+}
+
+.taskList__deleteBtn:hover {
+  background-color: #ff6868;
+}
+
+.taskList__editBtn {
+  background-color: #333;
+}
+
+.taskList__editBtn:hover {
+  background-color: #4d4d4d;
+}
+
+.taskList__updateText {
+  display: none;
+}
+
+.taskList__itemEdit {
+  padding: 5px 10px;
+  display: none;
+}
+
+.taskList__itemEdit.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .taskList__itemEdit.active {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.taskList__editInput {
+  padding: 5px 10px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #333;
+}
+
+@media (max-width: 767px) {
+  .taskList__editInput {
+    width: 100%;
+  }
+}
+
+.taskList__editInput:focus {
+  outline: none;
+}
+
+@media (max-width: 767px) {
+  .taskList__editControl {
+    text-align: right;
+  }
+}
+
+.taskList__confirmBtn, .taskList__cancelBtn {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 6px;
+}
+
+@media (max-width: 767px) {
+  .taskList__confirmBtn, .taskList__cancelBtn {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+}
+
+.taskList__confirmBtn:hover, .taskList__cancelBtn:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #ffd370;
+}

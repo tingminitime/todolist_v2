@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Todolist api ver. by Tim</title>
+  <link
+    rel="stylesheet"
+    href="style/all.css"
+  >
+</head>
+
+<body>
+  <div class="todolist">
+    <h1 class="title">TODO LIST <small class="smallText">by Tim</small></h1>
+    <p class="version">api ver.</p>
+    <div class="input">
+      <input
+        type="text"
+        class="input__taskInput"
+        placeholder="請輸入待辦事項"
+        autofocus
+      >
+      <button class="input__add">新增</button>
+    </div>
+    <div class="todolist__data">
+      <ul class="statusFilter">
+        <li class="filter">
+          <a
+            href="javascript:;"
+            class="filter__changeStatus filter__changeStatus-all"
+          >全部<span class="filter__allTaskCount">(0)</span></a>
+        </li>
+        <li class="filter">
+          <a
+            href="javascript:;"
+            class="filter__changeStatus filter__changeStatus-uncompleted"
+          >待完成<span class="filter__uncompletedTaskCount">(0)</span></a>
+        </li>
+        <li class="filter">
+          <a
+            href="javascript:;"
+            class="filter__changeStatus filter__changeStatus-completed"
+          >已完成<span class="filter__completedTaskCount">(0)</span></a>
+        </li>
+      </ul>
+      <div class="filter__selectBlock"></div>
+      <ul class="taskList">
+      </ul>
+    </div>
+  </div>
+  <script
+    src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js'
+    integrity='sha512-Idr7xVNnMWCsgBQscTSCivBNWWH30oo/tzYORviOCrLKmBaRxRflm2miNhTFJNVmXvCtzgms5nlJF4az2hiGnA=='
+    crossorigin='anonymous'
+  ></script>
+  <script
+    type="module"
+    src="api.js"
+  ></script>
+  <script
+    type="module"
+    src="all.js"
+  ></script>
+</body>
+
+</html>
