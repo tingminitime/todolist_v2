@@ -3,7 +3,8 @@ import { apiTaskRequest, apiTaskAdd, apiTaskUpdate, apiTaskDelete } from "./api.
 // ----- 變數 -----
 const taskInput = document.querySelector('.input__taskInput')
 const addBtn = document.querySelector('.input__add')
-const taskList = document.querySelector('.taskList')
+
+const clearAllCompletedTaskBtn = document.querySelector('.clearAllCompletedTask__btn')
 
 const statusFilter = document.querySelector('.statusFilter')
 const filters = document.querySelectorAll('.filter__changeStatus')
@@ -13,6 +14,8 @@ const filterSelectBlock = document.querySelector('.filter__selectBlock')
 const filterAllCount = document.querySelector('.filter__allTaskCount')
 const filterUncompletedCount = document.querySelector('.filter__uncompletedTaskCount')
 const filterCompletedCount = document.querySelector('.filter__completedTaskCount')
+
+const taskList = document.querySelector('.taskList')
 
 let localData = [] // 全部資料
 let taskObj = {}
@@ -363,7 +366,7 @@ function uncompletedTaskFilter(e) {
   }
 }
 
-// 點擊完成 => 更新篩選狀態並重新渲染 completedTaskData
+// 點擊 完成 => 更新篩選狀態並重新渲染 completedTaskData
 function completedTaskFilter(e) {
   if (e.target.classList.contains('filter__changeStatus-completed') ||
     e.target.classList.contains('filter__completedTaskCount')) {
@@ -410,11 +413,49 @@ function apiDeleteTask(deleteTargetId) {
     .catch(err => console.error('刪除失敗', err))
 }
 
+// ----- 清除全部已完成待辦事項 -----
+function clearAllCompletedTask(e) {
+  // 將 isCompleted 為 true 的待辦事項留住
+  localData = localData.filter(item => item['isCompleted'] === false)
+  updateUncompletedTaskData()
+  updateCompletedTaskData()
+  rerenderHandler()
+  changeTaskCount()
+  apiClearHandler()
+}
+
+// API 批量刪除已完成的待辦事項
+function apiClearHandler() {
+  // 先從 api get 資料
+  apiTaskRequest()
+    .then(res => {
+      let apiData = res.data
+      // 拿到資料後 => 找到 isCompleted 狀態為 true 的刪除
+      apiClearAllCompletedTask(apiData)
+    })
+}
+
+// API 批量刪除功能
+function apiClearAllCompletedTask(apiData) {
+  apiData.forEach(item => {
+    if (item['isCompleted'] === true) {
+      apiTaskDelete(item.id)
+        .then(res => {
+          console.log(
+            `(批量刪除成功) ID: ${item.id}, Content:${item.content}`
+          )
+        })
+        .catch(err => console.error('(批量刪除失敗)', err))
+    }
+  })
+}
+
 // ----- 監聽 -----
 addBtn.addEventListener('click', addTask, false)
 taskInput.addEventListener('keyup', function (e) {
   if (e.keyCode === 13) addTask()
 }, false)
+clearAllCompletedTaskBtn.addEventListener('click', clearAllCompletedTask, false)
 statusFilter.addEventListener('click', taskFilterHandler, false)
 taskList.addEventListener('click', editTaskHandler, false)
 taskList.addEventListener('click', taskStatusHandler, false)

@@ -134,7 +134,7 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   background-color: #fff;
   border-radius: 10px;
 }
@@ -183,6 +183,35 @@ button {
 
 .input__add:hover {
   background-color: #4d4d4d;
+}
+
+.funcList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.clearAllCompletedTask__btn {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 8px;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.clearAllCompletedTask__btn:hover {
+  background-color: white;
+}
+
+.clearAllCompletedTask__btn > img {
+  vertical-align: sub;
+  margin-left: 8px;
 }
 
 .statusFilter {
