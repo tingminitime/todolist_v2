@@ -415,6 +415,13 @@ function apiDeleteTask(deleteTargetId) {
 }
 
 // ----- 清除全部已完成待辦事項 -----
+// 檢查是否所有待辦事項都是未完成 false
+function checkHaveCompletedTask() {
+  let haveCompletedTask = localData.some(item => item['isCompleted'])
+  if (!haveCompletedTask) alert('找不到「已完成」的待辦事項哦 !')
+  else clearDoubleCheck()
+}
+
 // 是否確認清空 ?
 function clearDoubleCheck() {
   let clearDoubleCheck = confirm('確定清空已完成待辦事項 ?')
@@ -464,7 +471,7 @@ addBtn.addEventListener('click', addTask, false)
 taskInput.addEventListener('keyup', function (e) {
   if (e.keyCode === 13) addTask()
 }, false)
-clearAllCompletedTaskBtn.addEventListener('click', clearDoubleCheck, false)
+clearAllCompletedTaskBtn.addEventListener('click', checkHaveCompletedTask, false)
 statusFilter.addEventListener('click', taskFilterHandler, false)
 taskList.addEventListener('click', editTaskHandler, false)
 taskList.addEventListener('click', taskStatusHandler, false)
