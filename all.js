@@ -1,26 +1,27 @@
 import { apiTaskRequest, apiTaskAdd, apiTaskUpdate, apiTaskDelete } from "./api.js";
 
 // ----- 變數 -----
+// input
 const taskInput = document.querySelector('.input__taskInput')
 const addBtn = document.querySelector('.input__add')
-
+// clear btn
 const clearAllCompletedTaskBtn = document.querySelector('.clearAllCompletedTask__btn')
-
+// filter func
 const statusFilter = document.querySelector('.statusFilter')
 const filters = document.querySelectorAll('.filter__changeStatus')
 const filterAll = document.querySelector('.filter__changeStatus-all')
 const filterSelectBlock = document.querySelector('.filter__selectBlock')
-
+// filter count
 const filterAllCount = document.querySelector('.filter__allTaskCount')
 const filterUncompletedCount = document.querySelector('.filter__uncompletedTaskCount')
 const filterCompletedCount = document.querySelector('.filter__completedTaskCount')
-
+// task list
 const taskList = document.querySelector('.taskList')
 
 let localData = [] // 全部資料
-let taskObj = {}
 let completedTaskData = [] // 已完成資料
 let uncompletedTaskData = [] // 未完成資料
+let taskObj = {} // 打包要新增的資料
 let editMode = false // 是否在編輯模式
 let editBlock = null // editBlock 選取暫存器
 let prevEditBlock = null // 上一個 editBlock 暫存器
