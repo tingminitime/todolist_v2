@@ -294,12 +294,12 @@ function apiChangeTaskStatus(targetId, status) {
     .catch(err => console.error('寫入失敗', err))
 }
 
-// 更新未完成資料
+// 更新未完成資料 uncompletedTaskData 內容
 function updateUncompletedTaskData() {
   uncompletedTaskData = localData.filter(item => item['isCompleted'] === false)
 }
 
-// 更新已完成資料
+// 更新已完成資料 completedTaskData 內容
 function updateCompletedTaskData() {
   completedTaskData = localData.filter(item => item['isCompleted'] === true)
 }
@@ -383,6 +383,7 @@ function rerenderHandler() {
 }
 
 // ----- 刪除待辦事項 -----
+// 是否確認刪除 ?
 function deleteDoubleCheck(e) {
   if (!e.target.classList.contains('taskList__deleteBtn')) return
   let deleteDoubleCheck = confirm('確定刪除這一筆 ?')
@@ -408,13 +409,21 @@ function deleteTask(e) {
 function apiDeleteTask(deleteTargetId) {
   apiTaskDelete(deleteTargetId)
     .then(res => {
-      console.log('成功刪除資料', res.data)
+      console.log(`成功刪除資料ID: ${deleteTargetId}`)
     })
     .catch(err => console.error('刪除失敗', err))
 }
 
 // ----- 清除全部已完成待辦事項 -----
-function clearAllCompletedTask(e) {
+// 是否確認清空 ?
+function clearDoubleCheck() {
+  let clearDoubleCheck = confirm('確定清空已完成待辦事項 ?')
+  if (clearDoubleCheck) clearAllCompletedTask()
+  else return
+}
+
+// 清空排程
+function clearAllCompletedTask() {
   // 將 isCompleted 為 true 的待辦事項留住
   localData = localData.filter(item => item['isCompleted'] === false)
   updateUncompletedTaskData()
@@ -455,7 +464,7 @@ addBtn.addEventListener('click', addTask, false)
 taskInput.addEventListener('keyup', function (e) {
   if (e.keyCode === 13) addTask()
 }, false)
-clearAllCompletedTaskBtn.addEventListener('click', clearAllCompletedTask, false)
+clearAllCompletedTaskBtn.addEventListener('click', clearDoubleCheck, false)
 statusFilter.addEventListener('click', taskFilterHandler, false)
 taskList.addEventListener('click', editTaskHandler, false)
 taskList.addEventListener('click', taskStatusHandler, false)
